@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <h1>Text to MP3</h1>
+      <textarea
+        cols="40"
+        rows="15"
+        id="pdfText"
+        placeholder="PDF text will appear here"
+      ></textarea>
+      <input type="file" id="inputFile" placeholder="" />
+      <div class="buttons">
+        <label for="inputFile" id="input-label">Upload PDF</label>
+        <button id="mp3Convert">Convert to MP3</button>
+      </div>
+    </div>
+    <script type="module" src="../index.js"></script>
+  </body>
+</html>
