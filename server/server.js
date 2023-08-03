@@ -1,19 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
-const PORT = process.env.PORT || 8000
 const googleTTS = require('google-tts-api');
 const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
 
-app.use(fileUpload());
-app.use( express.json() );
+const app = express();
 app.use(cors());
-app.listen(
-  PORT,
-  () => console.log(`Server is running on ${PORT}`)
-);
 
+app.use(fileUpload());
+
+app.listen(8000, () => {
+  console.log('App listening on port 8000!');
+});
 
 app.get('/base64data', (request, response) => {
   const text = request.query.text;
@@ -59,3 +57,4 @@ async function getText(src) {
   const items = content.items.map(item => item.str);
   return items.join(' ');
 }
+
