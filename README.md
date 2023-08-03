@@ -45,4 +45,4 @@ Requires Node version 18
 ## Authors
 
 Jesus Ballesteros
-[LinkedIn]https://www.linkedin.com/in/ballesterosjesus/
+[LinkedIn](https://www.linkedin.com/in/ballesterosjesus/)
