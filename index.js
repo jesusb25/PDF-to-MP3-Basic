@@ -1,8 +1,16 @@
 const inputPDF = document.querySelector("#inputFile");
 const resultText = document.querySelector("#pdfText");
 
+function isPDF(filename) {
+  const extension = filename.split('.').pop().toLowerCase();
+  return extension === 'pdf';
+}
 
 inputPDF.addEventListener("change", () => {
+  if (!inputPDF.files[0] || !isPDF(inputPDF.files[0].name)) {
+    window.alert("Error: Input file must be PDF");
+    return;
+  }
   uploadPDF();
 });
 
