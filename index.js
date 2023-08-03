@@ -57,7 +57,8 @@ function downloadMP3(base64Data) {
 
   const a = document.createElement("a");
   a.href = mp3Data;
-  a.download = "audio.mp3";
+  const filename = inputPDF.files[0] ? inputPDF.files[0].name : "audio.mp3";
+  a.download = filename.slice(0, filename.lastIndexOf('.')) + ".mp3";
   document.body.appendChild(a);
   a.click();
 }
