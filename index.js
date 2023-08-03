@@ -11,7 +11,7 @@ function uploadPDF() {
   console.log(inputPDF.files[0]);
   formData.append("pdf", inputPDF.files[0]);
 
-  fetch("https://pdf-to-mp3.onrender.com//get-text", {
+  fetch("https://pdf-to-mp3.onrender.com/get-text", {
     method: "POST",
     body: formData
   }).then(response => {
