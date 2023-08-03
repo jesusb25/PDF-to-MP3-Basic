@@ -4,14 +4,17 @@ const PORT = process.env.port || 8000;
 const googleTTS = require('google-tts-api');
 const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 
 app.use(fileUpload());
+const directoryPath = path.dirname(__dirname);
+app.use(express.static(directoryPath));
 
 app.listen(PORT, () => {
-  console.log('App listening on port 8000!');
+  console.log('If local, static files are on http://localhost:8000');
 });
 
 app.get('/base64data', (request, response) => {
