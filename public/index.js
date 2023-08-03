@@ -19,7 +19,6 @@ function uploadPDF() {
   }).then(extractedText => {
     extractedText = extractedText.trim();
     resultText.value = extractedText;
-    window.alert();
   });
 }
 
@@ -69,6 +68,10 @@ async function convertTextToMp3(event) {
   console.log("Button clicked!");
   try {
     const text = document.querySelector("#pdfText").value;
+    if (!text) {
+      window.alert("Error: PDF text cannot be empty.");
+      throw new Error("No text to convert.");
+    }
     const base64Data = await getBase64Data(text);
     downloadMP3(base64Data);
   } catch (error) {

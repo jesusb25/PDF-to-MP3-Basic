@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const googleTTS = require('google-tts-api');
 const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
@@ -11,7 +11,7 @@ app.use( express.json() );
 app.use(cors());
 app.listen(
   PORT,
-  () => console.log(`it's alive on http://localhost:${PORT}`)
+  () => console.log(`Server is running on ${PORT}`)
 );
 
 
