@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8000
 const googleTTS = require('google-tts-api');
 const fileUpload = require('express-fileupload');
-const pdfjsLib = require('../pdfjs-dist/build/pdf.js');
+const pdfjsLib = require('pdfjs-dist');
 
 app.use(fileUpload());
 app.use( express.json() );
