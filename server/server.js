@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 
 app.use(fileUpload());
 
@@ -43,19 +43,31 @@ app.post('/get-text', (request, response) => {
   }
   const src = request.files.pdf;
   getText(src).then(text => {
+    console.log(text);
     response.send(text);
   });
 });
 
-async function getContent(src) {
+async function getAllContent(src) {
   const doc = await pdfjsLib.getDocument(src).promise;
-  const page = await doc.getPage(1);
-  return await page.getTextContent();
+  console.log(doc);
+  const numPages = doc.numPages;
+  const allContent = [];
+
+  for (let pageNumber = 1; pageNumber <= numPages; pageNumber++) {
+    const page = await doc.getPage(pageNumber);
+    const content = await page.getTextContent();
+    allContent.push(content);
+  }
+
+  return allContent;
 }
 
+
 async function getText(src) {
-  const content = await getContent(src);
-  const items = content.items.map(item => item.str);
-  return items.join(' ');
+  const allContent = await getAllContent(src);
+  const allText = allContent.flatMap(page => page.items.map(item => item.str));
+  return allText.join(' ');
 }
+
 

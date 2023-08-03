@@ -26,6 +26,7 @@ function uploadPDF() {
     return response.text();
   }).then(extractedText => {
     extractedText = extractedText.trim();
+    extractedText = extractedText.replace(/\s{2,}/g, ' ');
     resultText.value = extractedText;
   });
 }
