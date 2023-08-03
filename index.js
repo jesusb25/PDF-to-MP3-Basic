@@ -1,5 +1,6 @@
 const inputPDF = document.querySelector("#inputFile");
 const resultText = document.querySelector("#pdfText");
+const MAX_TEXT_LENGTH = 1000;
 
 function isPDF(filename) {
   const extension = filename.split('.').pop().toLowerCase();
@@ -74,18 +75,46 @@ buttonConvert.addEventListener("click", convertTextToMp3);
  * @returns {Promise<void>} A promise that resolves when the process is complete.
  */
 async function convertTextToMp3(event) {
-  console.log("Button clicked!");
+  console.log("Conversion started!");
   try {
     const text = document.querySelector("#pdfText").value;
     if (!text) {
       window.alert("Error: PDF text cannot be empty.");
       throw new Error("No text to convert.");
     }
-    const base64Data = await getBase64Data(text);
+    
+    const textChunks = splitTextIntoChunks(text, MAX_TEXT_LENGTH);
+    const base64DataArray = await Promise.all(textChunks.map(chunk => getBase64Data(chunk)));
+    const base64Data = base64DataArray.join('');
+
     downloadMP3(base64Data);
   } catch (error) {
     console.log("Error:", error);
   }
   resultText.textContent = "";
+}
+
+
+function splitTextIntoChunks(text, chunkSize) {
+  const chunks = [];
+  let currentIndex = 0;
+
+  while (currentIndex < text.length) {
+    let endIndex = currentIndex + chunkSize;
+    if (endIndex >= text.length) {
+      endIndex = text.length;
+    } else {
+      // Find the last space before endIndex to ensure no word is split
+      const lastSpaceIndex = text.lastIndexOf(' ', endIndex);
+      if (lastSpaceIndex !== -1 && lastSpaceIndex > currentIndex) {
+        endIndex = lastSpaceIndex;
+      }
+    }
+
+    chunks.push(text.slice(currentIndex, endIndex));
+    currentIndex = endIndex + 1;
+  }
+
+  return chunks;
 }
 
