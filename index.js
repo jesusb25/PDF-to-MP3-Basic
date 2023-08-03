@@ -19,7 +19,7 @@ function uploadPDF() {
   console.log(inputPDF.files[0]);
   formData.append("pdf", inputPDF.files[0]);
 
-  fetch("http://localhost:8000/get-text", {
+  fetch("https://pdf-to-mp3.onrender.com/get-text", {
     method: "POST",
     body: formData
   }).then(response => {
@@ -36,7 +36,7 @@ function uploadPDF() {
  * @returns {Promise<string>} A promise that resolves with the base64-encoded audio data.
  */
 async function getBase64Data(text) {
-  const apiUrl = `http://localhost:8000/base64data?text=${encodeURIComponent(text)}`;
+  const apiUrl = `https://pdf-to-mp3.onrender.com/base64data?text=${encodeURIComponent(text)}`;
   const response = await fetch(apiUrl);
   if (!response.ok) {
     throw new Error("Network response was not ok.");
