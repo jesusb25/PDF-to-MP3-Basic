@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
 
 const app = express();
-//app.use(cors());
+app.use(cors());
 
 app.use(fileUpload());
 
