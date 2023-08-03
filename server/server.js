@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const PORT = process.env.port || 8000;
 const googleTTS = require('google-tts-api');
 const fileUpload = require('express-fileupload');
 const pdfjsLib = require('pdfjs-dist');
@@ -9,7 +10,7 @@ app.use(cors());
 
 app.use(fileUpload());
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log('App listening on port 8000!');
 });
 
