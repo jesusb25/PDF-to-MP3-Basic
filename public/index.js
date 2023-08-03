@@ -74,9 +74,11 @@ async function convertTextToMp3(event) {
     }
     const base64Data = await getBase64Data(text);
     downloadMP3(base64Data);
+    console.log("Done!");
+    resultText.value = "";
   } catch (error) {
     console.log("Error:", error);
   }
-  resultText.textContent = "";
+  
 }
 
