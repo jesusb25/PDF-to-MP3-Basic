@@ -1,5 +1,5 @@
 # PDF to MP3 Converter
-![PDF Icon](https://raw.githubusercontent.com/your_username/your_repository/main/images/your_image.png](https://github.com/jesusb25/PDF-to-MP3/blob/main/assets/icons8-bookmark-64.png))
+![PDF Icon](https://github.com/jesusb25/PDF-to-MP3/blob/main/assets/icons8-bookmark-64.png)
 
 
 ## [CHECK IT OUT HERE!](https://jesusb25.github.io/PDF-to-MP3/)
